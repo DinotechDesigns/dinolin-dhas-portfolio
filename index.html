@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Replaced by the --base-href argument of `flutter build web`. -->
+  <base href="/dinolin-dhas-portfolio/">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dinolin Dhas | Flutter Developer</title>
+  <meta name="description" content="Portfolio of Dinolin Dhas, Flutter Developer with 3+ years of experience building cross-platform mobile applications using Flutter, Dart, REST APIs, and backend integrations.">
+  <meta name="author" content="Dinolin Dhas">
+  <meta name="theme-color" content="#131B36">
+  <meta name="color-scheme" content="dark light">
+  <script>
+    // Same rule as ThemeController: a saved choice, otherwise the system setting.
+    (function () {
+      var saved = null;
+      try { saved = localStorage.getItem('portfolio-theme'); } catch (e) {}
+      var light = saved ? saved === 'light' : matchMedia('(prefers-color-scheme: light)').matches;
+      document.documentElement.setAttribute('data-theme', light ? 'light' : 'dark');
+      if (light) document.querySelector('meta[name="theme-color"]').content = '#F4F6FC';
+    })();
+  </script>
+
+  <!-- Social preview. Crawlers need absolute URLs, so update these if the site moves. -->
+  <link rel="canonical" href="https://dinotechdesigns.github.io/dinolin-dhas-portfolio/">
+  <meta property="og:url" content="https://dinotechdesigns.github.io/dinolin-dhas-portfolio/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Dinolin Dhas | Flutter Developer">
+  <meta property="og:description" content="Flutter Developer with 3+ years of experience building cross-platform mobile applications for Android and iOS.">
+  <meta property="og:image" content="https://dinotechdesigns.github.io/dinolin-dhas-portfolio/social-preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Dinolin Dhas, Flutter Developer">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Dinolin Dhas | Flutter Developer">
+  <meta name="twitter:description" content="Flutter Developer with 3+ years of experience building cross-platform mobile applications for Android and iOS.">
+  <meta name="twitter:image" content="https://dinotechdesigns.github.io/dinolin-dhas-portfolio/social-preview.png">
+
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Dinolin Dhas">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="manifest" href="manifest.json">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Dinolin Dhas",
+    "jobTitle": "Flutter Developer",
+    "address": { "@type": "PostalAddress", "addressRegion": "Tamil Nadu", "addressCountry": "IN" },
+    "sameAs": ["https://www.linkedin.com/in/dinolindhas-c", "https://github.com/DinotechDesigns"],
+    "knowsAbout": ["Flutter", "Dart", "GetX", "REST APIs", "Spring Boot", "PostgreSQL", "AWS DynamoDB", "Core Java", "Git"]
+  }
+  </script>
+
+  <style>
+    :root { --page: #131B36; --ink: #F7F8FF; --rail: #243159; --accent: #52E6C7; }
+    :root[data-theme="light"] { --page: #F4F6FC; --ink: #131A35; --rail: #DDE2F3; --accent: #0A7A69; }
+    html, body { margin: 0; height: 100%; background: var(--page); }
+    #splash {
+      position: fixed; inset: 0; z-index: 1; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 18px; background: var(--page); color: var(--ink);
+      font: 600 22px/1.2 system-ui, -apple-system, "Segoe UI", sans-serif; transition: opacity .35s ease;
+    }
+    #splash.done { opacity: 0; pointer-events: none; }
+    #splash i { width: 120px; height: 2px; background: var(--rail); overflow: hidden; }
+    #splash i::after {
+      content: ""; display: block; width: 40%; height: 100%; background: var(--accent);
+      animation: load 1.1s ease-in-out infinite;
+    }
+    @keyframes load { from { transform: translateX(-100%); } to { transform: translateX(260%); } }
+    @media (prefers-reduced-motion: reduce) { #splash i::after { animation: none; width: 100%; } }
+    noscript { position: fixed; inset: 0; z-index: 2; overflow: auto; background: var(--page); color: var(--ink); font: 17px/1.6 system-ui, sans-serif; }
+    noscript main { max-width: 640px; margin: 0 auto; padding: 48px 24px; }
+    noscript a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <div id="splash"><span>Dinolin Dhas</span><i aria-hidden="true"></i></div>
+
+  <noscript>
+    <main>
+      <h1>Dinolin Dhas, Flutter Developer</h1>
+      <p>Flutter Developer with 3+ years of experience building cross-platform mobile applications for Android and iOS using Flutter, Dart, GetX, REST APIs, Spring Boot and PostgreSQL.</p>
+      <h2>Experience</h2>
+      <p>Top Freshers Technologies, January 2026 – Present<br>Links4Engg Pvt Ltd, April 2023 – September 2025</p>
+      <h2>Projects</h2>
+      <p>OpticalHR, Smartmi CRM, JerseyMEP</p>
+      <h2>Contact</h2>
+      <p><a href="mailto:cdinolindhas@gmail.com">cdinolindhas@gmail.com</a><br>
+      <a href="https://www.linkedin.com/in/dinolindhas-c">LinkedIn</a><br>
+      <a href="https://github.com/DinotechDesigns">GitHub</a></p>
+      <p>Turn on JavaScript to see the full portfolio.</p>
+    </main>
+  </noscript>
+
+  <script>
+    window.addEventListener('flutter-first-frame', function () {
+      var splash = document.getElementById('splash');
+      splash.classList.add('done');
+      setTimeout(function () { splash.remove(); }, 400);
+    });
+  </script>
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>

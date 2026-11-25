@@ -1,5 +1,7 @@
 # Dinolin Dhas: portfolio
 
+**Live site: https://dinotechdesigns.github.io/dinolin-dhas-portfolio/**
+
 Personal portfolio of Dinolin Dhas, Flutter Developer and Mobile Application Developer, built with Flutter Web.
 
 The site is a single responsive page covering background, skills, experience, projects, education and contact. It has a light and a dark theme, and a layer of motion that follows the visitor: the cursor, the cards and the portrait all respond to the mouse.
@@ -79,7 +81,7 @@ The site is written to `build/web`. To preview that build, serve the folder with
 | Project links | `storeUrl` on a project in `lib/app/constants/portfolio_content.dart` |
 | Colours of both themes | `lib/app/theme/app_palette.dart` |
 | Text, jobs, skills | `lib/app/constants/portfolio_content.dart` |
-| Social preview address | `og:image` and `twitter:image` in `web/index.html`, as absolute URLs once the site has an address |
+| Site address for link previews | `canonical`, `og:url`, `og:image` and `twitter:image` in `web/index.html` |
 
 Until a WhatsApp number or resume is added, those buttons say so and offer email instead.
 

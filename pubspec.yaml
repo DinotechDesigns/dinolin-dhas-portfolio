@@ -1,0 +1,37 @@
+name: dinolin_dhas_portfolio
+description: "Portfolio of Dinolin Dhas, Flutter Developer. Built with Flutter Web."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.12.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  url_launcher: ^6.3.2
+  web: ^1.1.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/resume/
+  fonts:
+    - family: MonaSans
+      fonts:
+        - asset: assets/fonts/MonaSans.ttf
+    # Three Font Awesome brand glyphs (OFL), subset to keep the download small.
+    - family: BrandIcons
+      fonts:
+        - asset: assets/fonts/BrandIcons.otf
+    # Flutter Web downloads Roboto from Google unless a family with that name is
+    # bundled. Nothing on the site uses it, so this alias avoids the request.
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/MonaSans.ttf

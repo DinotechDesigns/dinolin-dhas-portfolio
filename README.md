@@ -20,7 +20,7 @@ The site is a single responsive page covering background, skills, experience, pr
 
 - Light and dark themes: follows the system at first, remembers the visitor's choice, and opens outward from the switch
 - Site-wide cursor effects: a trailing ring, a soft light behind the page, magnetic buttons, and cards that light up and tilt
-- A portrait scene with depth that shifts with the mouse
+- Spring physics: sections trail the scroll and bounce into place, entrances land with a small jump, and the portrait sways after the mouse
 - Staggered hero entrance, scroll reveals, an animated timeline and a skills widget tree
 - Section navigation with a gliding mouse wheel, a veil transition for long jumps, a progress line and an active-section indicator, plus a full-screen menu on small screens
 - Project details with real app artwork, and an original illustration where no screenshots exist

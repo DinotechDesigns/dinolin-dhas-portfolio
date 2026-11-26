@@ -15,4 +15,7 @@ abstract final class Motion {
 
   /// Long, soft landing used for entrances and page travel.
   static const glide = Cubic(0.16, 1, 0.3, 1);
+
+  /// Lands a little past its mark and springs back: a small jump.
+  static const bounce = Cubic(0.3, 1.45, 0.55, 1);
 }

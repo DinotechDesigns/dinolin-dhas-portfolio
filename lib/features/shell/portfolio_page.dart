@@ -20,6 +20,7 @@ import '../home/hero_section.dart';
 import '../projects/projects_section.dart';
 import '../skills/skills_section.dart';
 import 'site_nav.dart';
+import 'scroll_jelly.dart';
 import 'travel_veil.dart';
 
 class PortfolioPage extends StatefulWidget {
@@ -29,7 +30,7 @@ class PortfolioPage extends StatefulWidget {
   State<PortfolioPage> createState() => _PortfolioPageState();
 }
 
-class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProviderStateMixin {
+class _PortfolioPageState extends State<PortfolioPage> with TickerProviderStateMixin {
   final _scroll = GlideScrollController();
   final _active = ValueNotifier(SectionId.home);
   final _scrolled = ValueNotifier(false);
@@ -47,6 +48,11 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
   /// Guards against a second navigation starting while one is under way.
   int _trip = 0;
   SectionId? _destination;
+
+  late final ScrollJelly _jelly = ScrollJelly(this, _scroll);
+
+  /// Share of the scroll lag per section: a gentle wave down the page.
+  static const _jellyShare = [0.35, 0.75, 1.0, 0.7, 1.0, 0.75, 0.45];
 
   @override
   void initState() {
@@ -69,6 +75,7 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
     _active.dispose();
     _scrolled.dispose();
     _veil.dispose();
+    _jelly.dispose();
     super.dispose();
   }
 
@@ -152,7 +159,10 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
     _onScroll();
   }
 
-  Widget _section(SectionId id, Widget child) => RepaintBoundary(key: _keys[id], child: child);
+  Widget _section(SectionId id, Widget child) => RepaintBoundary(
+    key: _keys[id],
+    child: JellySection(jelly: _jelly, share: _jellyShare[id.index], child: child),
+  );
 
   /// The bar sits above the scroll view, so it hands wheel events down to it.
   void _forwardWheel(PointerSignalEvent event) {
@@ -165,6 +175,7 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
 
   @override
   Widget build(BuildContext context) {
+    _jelly.enabled = !reduceMotionOf(context);
     return Scaffold(
       body: CallbackShortcuts(
         bindings: {

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dinolin_dhas_portfolio/app/app.dart';
 import 'package:dinolin_dhas_portfolio/app/constants/app_constants.dart';
 import 'package:dinolin_dhas_portfolio/app/constants/portfolio_content.dart';
+import 'package:dinolin_dhas_portfolio/features/about/about_section.dart';
 import 'package:dinolin_dhas_portfolio/features/shell/portfolio_page.dart';
 import 'package:dinolin_dhas_portfolio/features/shell/theme_toggle.dart';
 import 'package:dinolin_dhas_portfolio/features/shell/travel_veil.dart';
@@ -202,6 +203,27 @@ void main() {
       expect(focus.rect.top, greaterThanOrEqualTo(64));
       expect(focus.rect.bottom, lessThanOrEqualTo(900));
     }
+  });
+
+  testWidgets('sections bounce while scrolling and settle back in place', (tester) async {
+    await _pumpAt(tester, const Size(1440, 900), reduceMotion: false);
+    double lag() => tester
+        .widget<Transform>(find.ancestor(of: find.byType(AboutSection), matching: find.byType(Transform)).first)
+        .transform
+        .getTranslation()
+        .y;
+    for (var i = 0; i < 6; i++) {
+      await tester.sendEventToBinding(
+        const PointerScrollEvent(position: Offset(700, 450), scrollDelta: Offset(0, 120)),
+      );
+      await tester.pump(const Duration(milliseconds: 40));
+    }
+    expect(lag().abs(), greaterThan(1));
+    for (var i = 0; i < 150; i++) {
+      await tester.pump(const Duration(milliseconds: 16));
+    }
+    expect(lag().abs(), lessThan(0.05));
+    expect(tester.takeException(), isNull);
   });
 
   testWidgets('End and Home reach both ends', (tester) async {

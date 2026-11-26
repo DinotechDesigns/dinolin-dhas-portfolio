@@ -70,7 +70,9 @@ class _CursorLayerState extends State<CursorLayer> with SingleTickerProviderStat
     double ease(double speed) => 1 - math.exp(-dt * speed);
 
     final target = _cursor.target!;
+    final before = _cursor.position;
     _cursor.position = Offset.lerp(_cursor.position, target, ease(16))!;
+    _cursor.velocity = Offset.lerp(_cursor.velocity, (_cursor.position - before) / dt, ease(18))!;
     var lead = _cursor.position;
     for (var i = 0; i < _cursor.trail.length; i++) {
       _cursor.trail[i] = Offset.lerp(_cursor.trail[i], lead, ease(30))!;
@@ -83,6 +85,7 @@ class _CursorLayerState extends State<CursorLayer> with SingleTickerProviderStat
 
     final settled =
         (_cursor.trail.last - target).distance < 0.3 &&
+        _cursor.velocity.distance < 4 &&
         (_cursor.heat - (_cursor.isHot ? 1 : 0)).abs() < 0.01 &&
         (_cursor.press - (_cursor.pressed ? 1 : 0)).abs() < 0.01 &&
         (_cursor.presence - (_cursor.visible ? 1 : 0)).abs() < 0.01;
@@ -149,20 +152,23 @@ class _CursorPainter extends CustomPainter {
     }
 
     final radius = (17 + 12 * cursor.heat) * (1 - 0.28 * cursor.press);
+    // Squash and stretch: longer along the direction of travel, thinner across it.
+    final speed = cursor.velocity.distance;
+    final stretch = 1 + (speed / 2600).clamp(0.0, 0.5);
+    final ring = Rect.fromCenter(center: Offset.zero, width: radius * 2 * stretch, height: radius * 2 / stretch);
     canvas
-      ..drawCircle(
-        cursor.position,
-        radius,
-        Paint()..color = colors.mint.withValues(alpha: (0.05 + 0.1 * cursor.heat) * alpha),
-      )
-      ..drawCircle(
-        cursor.position,
-        radius,
+      ..save()
+      ..translate(cursor.position.dx, cursor.position.dy)
+      ..rotate(speed < 1 ? 0 : cursor.velocity.direction)
+      ..drawOval(ring, Paint()..color = colors.mint.withValues(alpha: (0.05 + 0.1 * cursor.heat) * alpha))
+      ..drawOval(
+        ring,
         Paint()
           ..style = PaintingStyle.stroke
           ..strokeWidth = 1.6
           ..color = Color.lerp(colors.indigo, colors.mint, cursor.heat)!.withValues(alpha: 0.85 * alpha),
-      );
+      )
+      ..restore();
   }
 
   @override

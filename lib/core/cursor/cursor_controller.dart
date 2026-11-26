@@ -16,6 +16,9 @@ class CursorController extends ChangeNotifier {
   double press = 0;
   double presence = 0;
 
+  /// Smoothed speed of the ring, px per second; it stretches along this.
+  Offset velocity = Offset.zero;
+
   bool visible = false;
   bool pressed = false;
   int _hotCount = 0;

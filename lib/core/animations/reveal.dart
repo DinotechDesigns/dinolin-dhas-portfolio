@@ -189,7 +189,7 @@ class BuildIn extends StatelessWidget {
         animation: progress,
         child: child,
         builder: (context, child) {
-          final left = 1 - Motion.glide.transform(progress.value);
+          final left = 1 - Motion.bounce.transform(progress.value);
           return Transform.translate(
             offset: switch (from) {
               RevealFrom.scroll => Offset(0, 56 * _RevealDirection.of(context) * left),
